@@ -131,7 +131,12 @@ text-justify: inter-word;
                                   fluidRow(column(12,tableOutput("TasasY")))
                                   )
                   )
-                )
+                ),
+    
+      nav_panel(title = "Info y Contacto",
+                fluidRow(
+                  column(12, uiOutput("Info")
+                  )))
       )
             
 # Server
@@ -361,8 +366,26 @@ server <- function(input, output) {
       write.csv(IngresosDL(), file, row.names = F)
     }
   )
+
+       output$Info <- renderUI({
+        HTML(paste( "Elaborado por:<br>",
+                    "<br>",
+                    "Gra Bellotti<br>",
+                    "<br>",
+                    "Lic. en Sociología (UNLP)<br>",
+                    "Especialista en Economía Política (FLACSO) <br>",
+                    "Magister en Explotación de Datos y Gestión del Conocimiento (Universidad Austral)<br>",
+                    "<br>",
+                    "Contacto: <br>",
+                    "<br>",
+                    "www.linkedin.com/in/graciela-bellotti <br>",
+                    "https://github.com/GraBellotti  <br>",
+                    "grabellotti@gmail.com <br>",
+                    sep = ""))
+      })
   
   }
 
 # Run the application
 shinyApp(ui = ui, server = server)
+
